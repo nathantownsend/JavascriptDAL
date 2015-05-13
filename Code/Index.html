@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="Scripts/linq/linq.min.js"></script>
+    <script src="Data/ProductData.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#Search").click(function(){
+                var query = $("#query").val();
+                var results = eval(query);
+		$("#Results").text("");
+		results.map(function(result){
+	                $("#Results").append($("<p/>").text(JSON.stringify(result)));
+		});
+
+            });
+
+           
+
+            
+
+            
+
+        });
+
+
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Product Search</legend>
+        <textarea id="query" rows="20" cols="100">Enumerable.From(ProductData).Where(function(x) { return x.WebCategoryBubbledUp == "Entertainment Centers"}).Select(function (x) { return x.ProductDescription }).ToArray();</textarea>
+        <input type="button" id="Search" value="Search"/>
+    </fieldset>
+    <div id="Results">
+    </div>
+    
+</body>
+</html>
